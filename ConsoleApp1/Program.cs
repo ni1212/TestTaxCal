@@ -1,4 +1,6 @@
 ﻿
+using System.Security.Cryptography.X509Certificates;
+
 var text = " a fgfd df ";
 Console.WriteLine($"{AR.Emp2(text, 2)}:");
 Console.WriteLine(AR.EmpCount(text,2));
@@ -8,32 +10,18 @@ for (int i = 0;i< chars.Length; i++)
     chars[i] = text[i];
 }
 
+int[] s = { 1, 2, 2, 2, 2, 3, 1 };
+var linked = new LinkedList<int>(s);
+linkList(linked);
 
-ChangeSpace(chars);
-static void ChangeSpace(params char[] chars)
+
+foreach (var c in linked)
 {
-    for (int i = 0; i < chars.Length; i++)
-    {
-        if (chars[i] == ' ')
-        {
-            ShiftArray(chars, i, 2);
-            chars[i++] = '%';
-            chars[i++] = '2';
-            chars[i] = '0';     // ここはi++ではない。
-        }
-    }
-    foreach (var item in chars)
-    {
-        Console.Write(item);
-    }
+    Console.Write(c);
 }
-static void ShiftArray(char[] chars, int start, int count)
-{
-    for (int i = chars.Length - 1 - count; start <= i; i--)
-    {
-        chars[i + count] = chars[i];
-    }
-}
+
+static void linkList(LinkedList<int> ints) => ints.Distinct();
+
 
 class AR
 {

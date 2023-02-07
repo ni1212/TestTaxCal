@@ -20,36 +20,48 @@ namespace TaxCal
 
             textBox1.Size = new Size(400, 100);
             textBox1.Name = "PriceBox";
+            
 
             textBox2.Size = new Size(400, 80);
             textBox2.Name = "taxPriceBox";
-            textBox2.Enabled= false;
+            textBox2.ReadOnly = true;
 
-            button1.Name = "calcButton";
+            //textBox2.Enabled= false;
+
+            button1.Name = "calbtn";
             button1.Text = "計算する";
+            button2.Name = "initialize";
+            button2.Text = "初期化";
 
             label1.Text = "税込価格";
             label2.Text = "税抜価格";
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label3.Text = AR.Emp2(textBox1.Text,2);
+           
             decimal price;
             var success=decimal.TryParse(textBox1.Text, out price);
 
             if (success)
             {
                 decimal tax = price * (decimal)1.1;
-                textBox2.Text=tax.ToString();
+                var str = $"{tax,3}";
+                textBox2.Text= str;
             }
         }
-        
+
+        private  void button2_Click(object sender, EventArgs e)
+        {
+            InitializeComponent();
+        }
+     
     }
     class AR
     {
